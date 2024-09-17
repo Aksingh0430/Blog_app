@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Blog Posts</h1>
+        <a href="/posts/new" class="btn new-post-btn">New Post</a>
+        <ul class="posts">
+            <% if (posts.length === 0) { %>
+                <li>No posts yet!</li>
+            <% } else { %>
+                <% posts.forEach(post => { %>
+                    <li class="post">
+                        <h2><%= post.title %></h2>
+                        <p><%= post.content %></p>
+                        <a href="/posts/<%= post.id %>/edit" class="btn">Edit</a>
+                        <form action="/posts/<%= post.id %>/delete" method="POST" class="inline-form">
+                            <button type="submit" class="btn delete-btn">Delete</button>
+                        </form>
+                    </li>
+                <% }) %>
+            <% } %>
+        </ul>
+    </div>
+</body>
+</html>
